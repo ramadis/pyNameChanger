@@ -3,25 +3,36 @@ import os #Importa el simbolo de sistema
 
 #Inicializo variables
 dir = [] #Almacena los archivos y carpetas
-path = r'' #Almacena la direccion
+path = os.getcwd() #Almacena la direccion
+order = '' #Almacena el comando
 
 ################
 ####Programa####
 ################
 
-dir = os.listdir(os.getcwd())
+#Navegacion de directorios
+while (order!='END'):
+	dir = os.listdir(path)
+	print 'Estas en ' + path
+	print ''
+	print 'COMMANDS: GO / END'
+	print ''
+	for x in dir:
+		print x
+	print ''
+	order = str(raw_input("Orden: ")).upper()
+	if order[:7] == 'GO BACK':
+		os.chdir('..')
+	elif order[:2] == 'GO':
+		os.chdir('./'+order[3:])
+	path = os.getcwd()
+	dir = []
 
-print 'Estas en ' + os.getcwd()
-print ''
-for x in 
 
-path = r'C:\Users\Ramiro\Desktop\Peliculas y Series'
-
-os.chdir(path)
-
-dir = os.listdir(os.getcwd())
-
-for folder in dir:
-	if not (folder[0]=='P' or folder[0]=='S'):
-		os.rename(folder,'Pelicula - ' + folder)
+#path = r'C:\Users\Ramiro\Desktop\Peliculas y Series'
+#os.chdir(path)
+#dir = os.listdir(os.getcwd())
+#for folder in dir:
+#	if not (folder[0]=='P' or folder[0]=='S'):
+#		os.rename(folder,'Pelicula - ' + folder)
 		
