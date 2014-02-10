@@ -33,14 +33,20 @@ print'Parametro de eleccion:'
 print ''
 print '-c Carpetas'
 print '-a Archivos'
-print '--all Todos'
+print '* Todos'
 print 'nom-- Que comience con nom'
 print '--nom Que termine con nom'
 print '--nom-- Que contenga nom'
 print ''
 parametro = str(raw_input("Parametro: "))
 
-
+#Elector de cambios
+print 'Cambios y condiciones:'
+print ''
+print '*nnom Agregar al final'
+print 'nnom* Agregar al principio'
+print ''
+comando = str(raw_input("Comando: "))
 	
 	
 #path = r'C:\Users\Ramiro\Desktop\Peliculas y Series'
