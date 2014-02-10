@@ -28,7 +28,21 @@ while (order!='END'):
 	path = os.getcwd()
 	dir = []
 
+#Elector de parametros
+print'Parametro de eleccion:'
+print ''
+print '-c Carpetas'
+print '-a Archivos'
+print '--all Todos'
+print 'nom-- Que comience con nom'
+print '--nom Que termine con nom'
+print '--nom-- Que contenga nom'
+print ''
+parametro = str(raw_input("Parametro: "))
 
+
+	
+	
 #path = r'C:\Users\Ramiro\Desktop\Peliculas y Series'
 #os.chdir(path)
 #dir = os.listdir(os.getcwd())
