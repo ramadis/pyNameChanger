@@ -1,6 +1,14 @@
 #Imports
 import os #Importa el simbolo de sistema
 
+#Funciones
+def is_number(s):
+    try:
+        float(s)
+        return True
+    except ValueError:
+        return False
+
 #Inicializo variables
 dir = [] #Almacena los archivos y carpetas
 path = os.getcwd() #Almacena la direccion
@@ -40,6 +48,7 @@ print '! Negador' #p3
 print ''
 parametro = str(raw_input("Parametro: "))
 
+#Condiciona la seleccion de archivos y carpetas
 p1=False
 p2=False
 
@@ -57,23 +66,47 @@ print dir
 print 'Cambios y condiciones:'
 print ''
 print '*nnom Agregar al final'
+print '/5 elimina los primeros 5 caracteres'
+print '5/ elimina los ultimos 5 caracteres'
 print 'nnom* Agregar al principio'
 print ''
 comando = str(raw_input("Comando: "))
 
-for folder in dir:
-	if comando[0]='*':
-		os.rename(folder,folder + comando[1:])
-	elif comando[len(comando)-1]:
-		os.rename(folder,folder + comando[:len(comando)-1])
+borrar= ''
+cont=0
+primero = 0
+if '/' in comando:
+	if comando[0] == '/':
+		cont=1
+		primero = 1
 	else:
-		os.rename(folder,comando)
+		primero = 2
+	while(is_number(comando[cont])):
+			borrar+=comando[cont]
+			cont+=1
+	cont=2
 
-	
-#path = r'C:\Users\Ramiro\Desktop\Peliculas y Series'
-#os.chdir(path)
-#dir = os.listdir(os.getcwd())
-#for folder in dir:
-#	if not (folder[0]=='P' or folder[0]=='S'):
-#		os.rename(folder,'Pelicula - ' + folder)
+for folder in dir:	#Realiza los cambios
+
+		if primero = 1:
+			if comando[len(borrar)+cont]='*':
+				os.rename(folder,folder[int(borrar):] + comando[len(borrar)+cont+1:])
+			elif comando[len(comando)-1]=='*':
+				os.rename(folder,folder[int(borrar):] + comando[len(borrar)+cont-1:len(comando)-1])
+			else:
+				os.rename(folder,comando)
+		elif primero = 2:
+			if comando[len(borrar)+cont]='*':
+				os.rename(folder,folder[:len(folder)-int(borrar)] + comando[len(borrar)+cont+1:])
+			elif comando[len(comando)-1]=='*':
+				os.rename(folder,folder[:len(folder)-int(borrar)] + comando[len(borrar)+cont-1:len(comando)-1])
+			else:
+				os.rename(folder,comando)
+		if primero = 0:
+			if comando[len(borrar)+cont]='*':
+				os.rename(folder,folder[] + comando[len(borrar)+cont+1:])
+			elif comando[len(comando)-1]=='*':
+				os.rename(folder,folder[] + comando[len(borrar)+cont-1:len(comando)-1])
+			else:
+				os.rename(folder,comando)
 		
