@@ -31,14 +31,27 @@ while (order!='END'):
 #Elector de parametros
 print'Parametro de eleccion:'
 print ''
-print '-c Carpetas'
-print '-a Archivos'
-print '* Todos'
+print '-c Carpetas' #p1
+print '-a Archivos' #p1 // todos #p2
 print 'nom-- Que comience con nom'
 print '--nom Que termine con nom'
 print '--nom-- Que contenga nom'
+print '! Negador' #p3
 print ''
 parametro = str(raw_input("Parametro: "))
+
+p1=False
+p2=False
+
+if '-c' in parametro:
+	p1=True
+elif '-a' in parametro:
+	p1=False
+elif '*' in parametro:
+	p2=True
+
+dir = [x for x in os.listdir(path) if (os.path.isdir(x) and p1) or p2]
+print dir
 
 #Elector de cambios
 print 'Cambios y condiciones:'
@@ -47,7 +60,15 @@ print '*nnom Agregar al final'
 print 'nnom* Agregar al principio'
 print ''
 comando = str(raw_input("Comando: "))
-	
+
+for folder in dir:
+	if comando[0]='*':
+		os.rename(folder,folder + comando[1:])
+	elif comando[len(comando)-1]:
+		os.rename(folder,folder + comando[:len(comando)-1])
+	else:
+		os.rename(folder,comando)
+
 	
 #path = r'C:\Users\Ramiro\Desktop\Peliculas y Series'
 #os.chdir(path)
